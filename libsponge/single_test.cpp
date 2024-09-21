@@ -3,7 +3,7 @@
  * 调试命令：g++ /home/hans/CS144-Sponge/libsponge/single_test.cpp /home/hans/CS144-Sponge/libsponge/byte_stream.cc /home/hans/CS144-Sponge/libsponge/stream_reassembler.cc -o mytest
  * 
  */
-#include "stream_reassembler.hh"
+#include"wrapping_integers.hh"
 
 #include <exception>
 #include <iostream>
@@ -11,20 +11,10 @@
 using namespace std;
 
 int main() {
-    StreamReassembler streamreassembler(8);
-    
-    streamreassembler.push_substring("abc", 0, 0);
-   
-    size_t a = streamreassembler.first_unread();
-    size_t b = streamreassembler.first_unassembled();
-    size_t c = streamreassembler.first_unacceptable();
-    cout << a << ' ' << b << ' ' << c << '\n';
-
-    streamreassembler.push_substring("bcdefgh", 1, 1);
-    a = streamreassembler.first_unread();
-    b = streamreassembler.first_unassembled();
-    c = streamreassembler.first_unacceptable();
-    cout << a << ' ' << b << ' ' << c << '\n';
+    // WrappingInt32 x = wrap(3 * (1ll << 32), WrappingInt32(0));
+    uint64_t y = unwrap(WrappingInt32(1), WrappingInt32(0), UINT32_MAX);
+    // cout << x.raw_value() << '\n';
+    cout << UINT32_MAX << '\n';
 
     return 0;
 }

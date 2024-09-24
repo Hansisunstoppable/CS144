@@ -14,7 +14,7 @@ void DUMMY_CODE(Targs &&... /* unused */) {}
 //! \param n The input absolute 64-bit sequence number
 //! \param isn The initial sequence number
 WrappingInt32 wrap(uint64_t n, WrappingInt32 isn) {
-    uint64_t mod_number = 1ll << 32;
+    uint64_t mod_number = 1ul<<32;
     uint32_t tmp_number = n % mod_number;
     uint64_t sum = static_cast<uint64_t>(tmp_number) + static_cast<uint64_t>(isn.raw_value());
     return WrappingInt32(sum % mod_number);
@@ -31,6 +31,7 @@ WrappingInt32 wrap(uint64_t n, WrappingInt32 isn) {
 //! and the other stream runs from the remote TCPSender to the local TCPReceiver and
 //! has a different ISN.
 uint64_t unwrap(WrappingInt32 n, WrappingInt32 isn, uint64_t checkpoint) {
+    //n 与 checkpoint 的最小距离
     int32_t distance = n - wrap(checkpoint, isn);
     int64_t result = distance + checkpoint;
     if (result >= 0) {

@@ -12,9 +12,9 @@ using namespace std;
 
 int main() {
     // WrappingInt32 x = wrap(3 * (1ll << 32), WrappingInt32(0));
-    uint64_t y = unwrap(WrappingInt32(1), WrappingInt32(0), UINT32_MAX);
+    uint64_t y = unwrap(WrappingInt32(1), WrappingInt32(0), 10);
     // cout << x.raw_value() << '\n';
-    cout << UINT32_MAX << '\n';
+    cout << y << '\n';
 
     return 0;
 }
